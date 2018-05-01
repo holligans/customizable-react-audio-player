@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import AudioPlayer from "./player";
-
+import NewPlayer from "./NewPlayer";
 class App extends React.Component {
   constructor() {
     super();
@@ -13,8 +13,14 @@ class App extends React.Component {
 
     return (
       <main>
-        <h1>Hello</h1>
+        <h1>Audio PLayers</h1>
+        <h2>Option 1</h2>
         <AudioPlayer src={audioFile} />
+        <br />
+        <hr />
+        <br />
+        <h2>Option 1</h2>
+        <NewPlayer src={audioFile} />
       </main>
     );
   }
