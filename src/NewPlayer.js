@@ -120,6 +120,7 @@ class NewPlayer extends Component {
                 trackStyle={[{ background: "#fec617" }]}
                 handleStyle={[
                   {
+                    marginLeft: "0",
                     background: "#fff",
                     border: "0px",
                     width: "6px",
