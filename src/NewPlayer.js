@@ -4,14 +4,8 @@ import "rc-slider/assets/index.css";
 import "rc-slider/assets/index.css";
 import "./styles/newplayer.css";
 import { Button, Icon } from "semantic-ui-react";
-// TODO
-// play btn (start playing the song)
-// pause btn (pause the song)
-// mute btn (mute the player)
-// volume meter(input range that allows us to up and down the volumen)
-// duration indicator(duration in seconds)
-// Song Meter indicator (meter the song in seconds)
-// Time Tracker (input range that allows us to see the song progess)
+import song from "./audio/90Minutos.mp3";
+
 const railStyle = {
   backgroundColor: "#757777",
   width: "100%"
@@ -65,6 +59,7 @@ class NewPlayer extends Component {
     const timeformatted = this.getTimeFormatted(currentTime);
     this.setState({ currentTime, currentTimeFormatted: timeformatted });
   };
+  // this function format the time
   getTimeFormatted(timeToFormat) {
     const totalduration = Math.ceil(timeToFormat);
     const durationMinutes = Math.floor(totalduration / 60);
@@ -76,20 +71,25 @@ class NewPlayer extends Component {
       durationSeconds < 10 ? `0${durationSeconds}` : durationSeconds;
     return durationTime;
   }
+  // play handler
   handlePlay = () => {
     this.newplayer.play();
   };
+  // pause handler
   handlePause = () => {
     this.newplayer.pause();
   };
+  // mute handler
   handleMute = mute => {
     this.newplayer.muted = mute;
     this.setState({ muted: this.newplayer.muted });
   };
+  // track change handler
   handleTrackChange = event => {
     this.newplayer.currentTime = event;
     this.updateCurrentTime();
   };
+  // control volume
   handleVolumeChange = event => {
     this.newplayer.volume = event;
     this.setState({ volume: this.newplayer.volume });
@@ -111,7 +111,13 @@ class NewPlayer extends Component {
               <Icon name="play" onClick={this.handlePlay} size={"large"} />
               <Icon name="pause" onClick={this.handlePause} size={"large"} />
             </div>
-            <div className="audio-player-rail">
+            <div
+              className={
+                this.iOS
+                  ? "audio-player-rail audio-player-rail-ios"
+                  : "audio-player-rail"
+              }
+            >
               <Slider
                 className="audio-track"
                 min={0}
@@ -160,7 +166,6 @@ class NewPlayer extends Component {
                   size={"large"}
                 />
               )}
-
               <Slider
                 className="volume-track"
                 min={0}
@@ -173,7 +178,8 @@ class NewPlayer extends Component {
                     border: "0px",
                     width: "6px",
                     height: "15px",
-                    borderRadius: "2px"
+                    borderRadius: "2px",
+                    marginLeft: "0px"
                   }
                 ]}
                 railStyle={railStyle}
@@ -183,7 +189,7 @@ class NewPlayer extends Component {
             </div>
           </div>
         ) : (
-          <div>Loading</div>
+          <div className="loader">Loading...</div>
         )}
       </div>
     );

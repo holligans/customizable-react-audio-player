@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import AudioPlayer from "./player";
 import NewPlayer from "./NewPlayer";
+import Song from "./audio/90Minutos.mp3";
 class App extends React.Component {
   constructor() {
     super();
@@ -9,7 +10,7 @@ class App extends React.Component {
 
   render() {
     const audioFile =
-      "https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3";
+      "https://s3.amazonaws.com/sprint-world-cup-2018/90minutos-song/90Minutos.mp3";
 
     return (
       <main>
